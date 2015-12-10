@@ -40,7 +40,7 @@ GossipGirl.prototype.process = function(time_stamp, metrics) {
       stats = stats_map[type]
       for (key in stats.data) {
         if (self.ignorable.indexOf(key) >= 0) continue
-        packet = self.format(key, stats.data[key], stats.suffix)
+        packet = self.format(key, stats.data[key] == '' ? 0 : stats.data[key], stats.suffix)
 
         if (self.statsd_config.dumpMessages) {
           util.log ("Gossiping about " + stats.name + ": " + packet)
